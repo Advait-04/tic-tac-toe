@@ -23,32 +23,59 @@
         <link href="/styles/style.css" rel="stylesheet" />
         <link href="/styles/twoPlayeStyle.css" rel="stylesheet" />
     </head>
-    <body>
-        <main>
-            <section class="mt-2">
+    <body
+        class="vw-100 vh-100 d-flex justify-content-center align-items-center"
+    >
+        <main class="main-div d-flex flex-column align-items-center">
+            <section class="mt-4">
                 <h1 class="title-text text-center">Tic Tac Toe</h1>
             </section>
-            <section class="game">
-                <div class="row">
-                    <div class="box col-3"></div>
-                    <div class="box col-1 bg-black"></div>
-                    <div class="box col-3"></div>
-                    <div class="box col-1 bg-black"></div>
-                    <div class="box col-3"></div>
+            <section class="game w-100 mt-3 p-3 pt-0">
+                <div class="row m-0 w-100 d-flex justify-content-between">
+                    <div class="box col-4 border-end border-secondary" id="o1">
+                        <h2 class="box-text">X</h2>
+                    </div>
+                    <div class="box col-4 border-end border-secondary">
+                        <h2 class="box-text">X</h2>
+                    </div>
+
+                    <div class="box col-4">
+                        <h2 class="box-text">X</h2>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="box col-3"></div>
-                    <div class="box col-1 bg-black"></div>
-                    <div class="box col-3"></div>
-                    <div class="box col-1 bg-black"></div>
-                    <div class="box col-3"></div>
+                <div class="row m-0 w-100 d-flex justify-content-between">
+                    <div
+                        class="box col-4 border-end border-secondary border-top"
+                    >
+                        <h2 class="box-text">X</h2>
+                    </div>
+
+                    <div
+                        class="box col-4 border-end border-secondary border-top"
+                    >
+                        <h2 class="box-text">X</h2>
+                    </div>
+
+                    <div class="box col-4 border-top border-secondary">
+                        <h2 class="box-text">X</h2>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="box col-3"></div>
-                    <div class="box col-1 bg-black"></div>
-                    <div class="box col-3"></div>
-                    <div class="box col-1 bg-black"></div>
-                    <div class="box col-3"></div>
+                <div class="row m-0 w-100 d-flex justify-content-between">
+                    <div
+                        class="box col-4 border-end border-top border-secondary"
+                    >
+                        <h2 class="box-text">X</h2>
+                    </div>
+
+                    <div
+                        class="box col-4 border-end border-top border-secondary"
+                    >
+                        <h2 class="box-text">X</h2>
+                    </div>
+
+                    <div class="box col-4 border-top border-secondary">
+                        <h2 class="box-text">X</h2>
+                    </div>
                 </div>
             </section>
         </main>
@@ -59,5 +86,6 @@
             crossorigin="anonymous"
         ></script>
         <script src="../scripts/script.js"></script>
+        <script src="../scripts/twoPlayer.js"></script>
     </body>
 </html>

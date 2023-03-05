@@ -1,3 +1,28 @@
 .title-text {
     font-size: 3rem;
 }
+
+.box {
+    height: 7rem;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-text {
+    font-size: 4rem;
+    font-family: Hugwa;
+}
+
+.main-div {
+    width: 90%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    max-width: 350px !important;
+}
+
+.line {
+    background-color: black;
+}
