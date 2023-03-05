@@ -1,0 +1,40 @@
+@font-face {
+    font-family: Hugwa;
+    src: url(../fonts/Hugwa.ttf);
+}
+
+@font-face {
+    font-family: Snubnose;
+    src: url(../fonts/snubnose-demo.regular.otf);
+}
+
+@font-face {
+    font-family: TimesSans;
+    src: url(../fonts/TIMESS__.ttf);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 1;
+}
+
+.title-text {
+    font-family: TimesSans;
+    font-size: 3rem;
+}
+
+.options-sec {
+    font-family: "Poppins", sans-serif;
+}
+
+.main-op-div {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    max-width: 350px !important;
+}
+
+@media screen and (max-width: 320px) {
+    .main-op-div {
+        width: 100% !important;
+    }
+}
