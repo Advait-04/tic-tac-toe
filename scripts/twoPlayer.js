@@ -22,9 +22,12 @@ const lines = [
 ];
 
 var state = [];
+var prevState = [];
 
 //the player item
 var control = "";
+
+var popCount = 0;
 
 var isOver = false;
 
@@ -45,6 +48,7 @@ function setFromState() {
     for (key in stateofBoard) {
         ele = document.querySelector(`#${key}`);
         ele.children[0].textContent = "";
+        ele.style.backgroundColor = "white";
     }
 }
 
@@ -82,6 +86,7 @@ function evalBoard() {
             lineArr.filter((val) => val === "X").length === 3 ||
             lineArr.filter((val) => val === "O").length === 3
         ) {
+            setColor(lines[i]);
             return true;
         }
     }
@@ -106,10 +111,14 @@ function setBoardItem(key, value) {
 }
 
 function gameStart(ele) {
+    popCount = 0;
     isOver = false;
 
     if (stateofBoard[ele.id].length == 0) {
         ele.children[0].textContent = control;
+
+        prevState.push([ele.id, control]);
+
         setBoardItem(ele.id, control);
 
         if (!isOver) {
@@ -129,6 +138,7 @@ function onWin(winner) {
     titleText.style.fontSize = "2rem";
 
     isOver = true;
+    popCount = 1;
 }
 
 function onDraw() {
@@ -142,4 +152,42 @@ function onDraw() {
     titleText.style.fontSize = "2rem";
 
     isOver = true;
+    popCount = 1;
+}
+
+function gameReset() {
+    const commentSection = document.querySelector(".comment");
+    const titleText = document.querySelector(".t-text");
+
+    commentSection.children[0].style = "";
+    titleText.style = "";
+
+    commentSection.children[0].innerHTML = `Current Turn: <span> ${control} </span> `;
+    titleText.innerHTML = "Tic Tac Toe";
+
+    setZero();
+    changeControl("X");
+}
+
+function onUndo() {
+    if (popCount === 0) {
+        const current = prevState.pop();
+        const box = document.querySelector(`#${current[0]}`);
+        const commentSection = document.querySelector(".comment");
+
+        box.children[0].innerHTML = "";
+        stateofBoard[current[0]] = "";
+
+        popCount += 1;
+
+        control = current[1];
+        commentSection.children[0].innerHTML = `Current Turn: <span> ${control} </span> `;
+    }
+}
+
+function setColor(eleArr) {
+    eleArr.forEach((ele) => {
+        const selector = document.querySelector(`#${ele}`);
+        selector.style.backgroundColor = "rgb(41, 171, 135)";
+    });
 }
