@@ -24,56 +24,83 @@
         <link href="../styles/twoPlayeStyle.css" rel="stylesheet" />
     </head>
     <body
-        class="vw-100 vh-100 d-flex justify-content-center align-items-center"
+        class="vw-100 vh-100 d-flex flex-column flex-column justify-content-center align-items-center"
     >
+        <section class="comment">
+            <h3></h3>
+        </section>
         <main class="main-div d-flex flex-column align-items-center">
             <section class="mt-4">
-                <h1 class="title-text text-center">Tic Tac Toe</h1>
+                <h1 class="title-text text-center t-text">Tic Tac Toe</h1>
             </section>
             <section class="game w-100 mt-3 p-3 pt-0">
                 <div class="row m-0 w-100 d-flex justify-content-between">
-                    <div class="box col-4 border-end border-secondary" id="o1">
+                    <div
+                        class="box col-4 border-end border-secondary"
+                        id="o1"
+                        onclick="clickHandler(this)"
+                    >
                         <h2 class="box-text">X</h2>
                     </div>
-                    <div class="box col-4 border-end border-secondary">
+                    <div
+                        class="box col-4 border-end border-secondary"
+                        id="o2"
+                        onclick="clickHandler(this)"
+                    >
                         <h2 class="box-text">X</h2>
                     </div>
 
-                    <div class="box col-4">
+                    <div class="box col-4" id="o3" onclick="clickHandler(this)">
                         <h2 class="box-text">X</h2>
                     </div>
                 </div>
                 <div class="row m-0 w-100 d-flex justify-content-between">
                     <div
                         class="box col-4 border-end border-secondary border-top"
+                        id="w1"
+                        onclick="clickHandler(this)"
                     >
                         <h2 class="box-text">X</h2>
                     </div>
 
                     <div
                         class="box col-4 border-end border-secondary border-top"
+                        id="w2"
+                        onclick="clickHandler(this)"
                     >
                         <h2 class="box-text">X</h2>
                     </div>
 
-                    <div class="box col-4 border-top border-secondary">
+                    <div
+                        class="box col-4 border-top border-secondary"
+                        id="w3"
+                        onclick="clickHandler(this)"
+                    >
                         <h2 class="box-text">X</h2>
                     </div>
                 </div>
                 <div class="row m-0 w-100 d-flex justify-content-between">
                     <div
                         class="box col-4 border-end border-top border-secondary"
+                        id="t1"
+                        onclick="clickHandler(this)"
                     >
                         <h2 class="box-text">X</h2>
                     </div>
 
                     <div
                         class="box col-4 border-end border-top border-secondary"
+                        id="t2"
+                        onclick="clickHandler(this)"
                     >
                         <h2 class="box-text">X</h2>
                     </div>
 
-                    <div class="box col-4 border-top border-secondary">
+                    <div
+                        class="box col-4 border-top border-secondary"
+                        id="t3"
+                        onclick="clickHandler(this)"
+                    >
                         <h2 class="box-text">X</h2>
                     </div>
                 </div>

@@ -15,6 +15,7 @@
 .box-text {
     font-size: 4rem;
     font-family: Hugwa;
+    font-weight: 700;
 }
 
 .main-div {
@@ -25,4 +26,14 @@
 
 .line {
     background-color: black;
+}
+
+.comment {
+    font-family: TimesSans;
+}
+
+span {
+    font-family: Hugwa;
+    font-size: xx-large;
+    font-weight: bolder;
 }
