@@ -21,6 +21,8 @@ const lines = [
     ["o3", "w2", "t1"],
 ];
 
+const mainDiv = document.querySelector("main");
+
 var state = [];
 var prevState = [];
 
@@ -139,6 +141,8 @@ function onWin(winner) {
 
     isOver = true;
     popCount = 1;
+
+    mainDiv.style.pointerEvents = "none";
 }
 
 function onDraw() {
@@ -153,6 +157,8 @@ function onDraw() {
 
     isOver = true;
     popCount = 1;
+
+    mainDiv.style.pointerEvents = "none";
 }
 
 function gameReset() {
@@ -167,6 +173,8 @@ function gameReset() {
 
     setZero();
     changeControl("X");
+
+    mainDiv.style.pointerEvents = "";
 }
 
 function onUndo() {
