@@ -22,6 +22,7 @@ const lines = [
 ];
 
 const mainDiv = document.querySelector("main");
+const undoButton = document.querySelector(".undoBtn");
 
 var state = [];
 var prevState = [];
@@ -143,6 +144,7 @@ function onWin(winner) {
     popCount = 1;
 
     mainDiv.style.pointerEvents = "none";
+    undoButton.style.display = "none";
 }
 
 function onDraw() {
@@ -159,6 +161,8 @@ function onDraw() {
     popCount = 1;
 
     mainDiv.style.pointerEvents = "none";
+
+    undoButton.style.display = "none";
 }
 
 function gameReset() {
@@ -175,6 +179,7 @@ function gameReset() {
     changeControl("X");
 
     mainDiv.style.pointerEvents = "";
+    undoButton.style.display = "";
 }
 
 function onUndo() {

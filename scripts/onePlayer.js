@@ -9,7 +9,13 @@ const lines = [
     [2, 4, 6],
 ];
 
+const mainDiv = document.querySelector("main");
+
 var stateofBoard;
+
+var clickBoxLogger = [];
+
+var prevStateOfBoard;
 
 const playerControl = "X";
 const systemControl = "O";
@@ -29,9 +35,13 @@ function startGame() {
 
 function clickHandler(box) {
     if (typeof stateofBoard[box.id] === "number") {
+        clickBoxLogger.push(box.id);
+
         playTurn(box.id, playerControl);
+
+        prevStateOfBoard = Array.from(stateofBoard);
+
         if (!checkDraw()) {
-            console.log("hello");
             playTurn(bestBox(), systemControl);
         }
     }
@@ -66,9 +76,12 @@ function gameOver(gameWon) {
         document.getElementById(index).style.backgroundColor = "green";
     }
 
-    for (var i = 0; i < boxes.length; i++) {
-        boxes[i].onclick = "";
-    }
+    //remove event listener
+    // for (var i = 0; i < boxes.length; i++) {
+    //     boxes[i].onclick = "";
+    // }
+
+    mainDiv.style.pointerEvents = "none";
 
     declareWinner(gameWon.payer === playerControl ? "player won" : "ai won");
 }
@@ -157,10 +170,27 @@ function miniMax(newBoard, player) {
 }
 
 function gameReset() {
-    for (var i = 0; i < boxes.length; i++) {
-        // boxes[i].onclick = "clickHandler(this)";
-        console.log(boxes[i]);
+    mainDiv.style.pointerEvents = " ";
+    startGame();
+}
+
+function onUndo() {
+    const move = clickBoxLogger.pop();
+
+    prevStateOfBoard[move] = parseInt(move, 10);
+
+    // stateofBoard = Array.from(prevStateOfBoard);
+    console.log(prevStateOfBoard);
+    console.log(stateofBoard);
+
+    const difference = prevStateOfBoard.filter(
+        (x) => !stateofBoard.includes(x)
+    );
+
+    for (var i = 0; i < difference.length; i++) {
+        const box = document.getElementById(difference[i]);
+        box.children[0].textContent = "";
     }
 
-    startGame();
+    stateofBoard = Array.from(prevStateOfBoard);
 }
