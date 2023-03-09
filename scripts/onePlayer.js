@@ -155,3 +155,12 @@ function miniMax(newBoard, player) {
 
     return moves[bestMove];
 }
+
+function gameReset() {
+    for (var i = 0; i < boxes.length; i++) {
+        // boxes[i].onclick = "clickHandler(this)";
+        console.log(boxes[i]);
+    }
+
+    startGame();
+}
