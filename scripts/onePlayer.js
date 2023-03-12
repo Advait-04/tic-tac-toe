@@ -10,6 +10,11 @@ const lines = [
 ];
 
 const mainDiv = document.querySelector("main");
+const boxes = document.querySelectorAll(".box");
+const titleText = document.querySelector(".t-text");
+const commentText = document.querySelector(".comment").children[0];
+const undoButton = document.querySelector(".undoBtn");
+var undoCount = 0;
 
 var stateofBoard;
 
@@ -20,13 +25,11 @@ var prevStateOfBoard;
 const playerControl = "X";
 const systemControl = "O";
 
-const boxes = document.querySelectorAll(".box");
-
 startGame();
 
 function startGame() {
     stateofBoard = Array.from(Array(9).keys());
-    console.log(stateofBoard);
+
     for (var i = 0; i < boxes.length; i++) {
         boxes[i].children[0].textContent = "";
         boxes[i].style.removeProperty("background-color");
@@ -38,6 +41,8 @@ function clickHandler(box) {
         clickBoxLogger.push(box.id);
 
         playTurn(box.id, playerControl);
+
+        undoCount = 0;
 
         prevStateOfBoard = Array.from(stateofBoard);
 
@@ -73,17 +78,14 @@ function checkWin(board, player) {
 
 function gameOver(gameWon) {
     for (let index of lines[gameWon.index]) {
-        document.getElementById(index).style.backgroundColor = "green";
+        document.getElementById(index).style.backgroundColor =
+            "rgb(41, 171, 135)";
     }
 
-    //remove event listener
-    // for (var i = 0; i < boxes.length; i++) {
-    //     boxes[i].onclick = "";
-    // }
-
     mainDiv.style.pointerEvents = "none";
+    undoButton.style.display = "none";
 
-    declareWinner(gameWon.payer === playerControl ? "player won" : "ai won");
+    declareWinner(gameWon.payer === playerControl ? "Player Won" : "AI Won");
 }
 
 function bestBox() {
@@ -96,10 +98,11 @@ function emptyBoxes() {
 
 function checkDraw() {
     if (emptyBoxes().length === 0) {
-        for (var i = 0; i < boxes.length; i++) {
-            boxes[i].onclick = "";
-        }
-        declareWinner("Tie Game");
+        mainDiv.style.pointerEvents = "none";
+        undoButton.style.display = "none";
+
+        declareWinner("Its a Draw");
+
         return true;
     } else {
         return false;
@@ -107,7 +110,8 @@ function checkDraw() {
 }
 
 function declareWinner(winner) {
-    //do the comment section here
+    commentText.textContent = winner;
+    titleText.textContent = "Game Over!!";
 }
 
 function miniMax(newBoard, player) {
@@ -170,27 +174,32 @@ function miniMax(newBoard, player) {
 }
 
 function gameReset() {
-    mainDiv.style.pointerEvents = " ";
+    mainDiv.style.pointerEvents = "";
+    undoButton.style.display = "";
+    commentText.textContent = "";
+    titleText.textContent = "Tic Tac Toe";
+    undoCount = 0;
+
     startGame();
 }
 
 function onUndo() {
-    const move = clickBoxLogger.pop();
+    if (undoCount == 0) {
+        const move = clickBoxLogger.pop();
 
-    prevStateOfBoard[move] = parseInt(move, 10);
+        prevStateOfBoard[move] = parseInt(move, 10);
 
-    // stateofBoard = Array.from(prevStateOfBoard);
-    console.log(prevStateOfBoard);
-    console.log(stateofBoard);
+        const difference = prevStateOfBoard.filter(
+            (x) => !stateofBoard.includes(x)
+        );
 
-    const difference = prevStateOfBoard.filter(
-        (x) => !stateofBoard.includes(x)
-    );
+        for (var i = 0; i < difference.length; i++) {
+            const box = document.getElementById(difference[i]);
+            box.children[0].textContent = "";
+        }
 
-    for (var i = 0; i < difference.length; i++) {
-        const box = document.getElementById(difference[i]);
-        box.children[0].textContent = "";
+        stateofBoard = Array.from(prevStateOfBoard);
+
+        undoCount += 1;
     }
-
-    stateofBoard = Array.from(prevStateOfBoard);
 }
